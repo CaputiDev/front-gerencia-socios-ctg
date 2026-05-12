@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sócios - CTG Raízes da Tradição</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#eef3f8;
+      color:#1f2937;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      width:100%;
+      background:#1737b7;
+      color:white;
+      padding:14px 30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .logo-area{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#1737b7;
+      font-weight:bold;
+    }
+
+    .logo-title h2{
+      font-size:24px;
+    }
+
+    .logo-title p{
+      font-size:13px;
+      opacity:0.8;
+    }
+
+    .menu{
+      display:flex;
+      gap:14px;
+    }
+
+    .menu button{
+      border:none;
+      background:transparent;
+      color:white;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:14px;
+    }
+
+    .menu button:hover,
+    .menu .active{
+      background:rgba(255,255,255,0.15);
+    }
+
+    /* CONTAINER */
+
+    .container{
+      padding:24px;
+    }
+
+    .top-content{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    .top-content h1{
+      color:#1737b7;
+      font-size:48px;
+    }
+
+    .top-content p{
+      color:#6b7280;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:none;
+      padding:12px 18px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#2563eb;
+      color:white;
+      box-shadow:0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    .btn-primary:hover{
+      background:#1d4ed8;
+    }
+
+    .btn-outline{
+      background:white;
+      border:1px solid #cbd5e1;
+      color:#2563eb;
+    }
+
+    /* BOX */
+
+    .box{
+      background:white;
+      border-radius:16px;
+      padding:22px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom:25px;
+    }
+
+    .box-title{
+      color:#1737b7;
+      font-size:28px;
+      margin-bottom:20px;
+      font-weight:bold;
+    }
+
+    /* FILTROS */
+
+    .filters{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+    }
+
+    .filters input,
+    .filters select{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:#f3f4f6;
+      font-size:14px;
+      outline:none;
+    }
+
+    /* TABELA */
+
+    .table-header{
+      margin-bottom:15px;
+      color:#6b7280;
+    }
+
+    .table-responsive{
+      overflow-x:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:900px;
+    }
+
+    th{
+      text-align:left;
+      padding:14px 10px;
+      border-bottom:1px solid #e5e7eb;
+      font-size:15px;
+    }
+
+    td{
+      padding:16px 10px;
+      border-bottom:1px solid #e5e7eb;
+      font-size:15px;
+    }
+
+    .avatar{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:#dbeafe;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#2563eb;
+      font-weight:bold;
+    }
+
+    .badge{
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:bold;
+      display:inline-block;
+    }
+
+    .green{
+      background:#dcfce7;
+      color:#15803d;
+    }
+
+    .red{
+      background:#fee2e2;
+      color:#dc2626;
+    }
+
+    .purple{
+      background:#f3e8ff;
+      color:#9333ea;
+    }
+
+    .blue{
+      background:#dbeafe;
+      color:#2563eb;
+    }
+
+    .gray{
+      color:#6b7280;
+    }
+
+    footer{
+      margin-top:40px;
+      background:#1737b7;
+      color:white;
+      text-align:center;
+      padding:10px;
+    }
+
+    @media(max-width:768px){
+
+      .navbar{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      .menu{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .top-content{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .top-content h1{
+        font-size:36px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="logo-area">
+
+      <div class="logo">
+        CTG
+      </div>
+
+      <div class="logo-title">
+        <h2>CTG Raízes da Tradição</h2>
+        <p>Sistema de Gerenciamento</p>
+      </div>
+
+    </div>
+
+    <nav class="menu">
+
+      <!-- REDIRECIONA PARA DASHBOARD -->
+
+      <button onclick="irDashboard()">
+        Dashboard
+      </button>
+
+      <button class="active">
+        Sócios
+      </button>
+
+      <button onclick="irFormularios()">
+        Formulários
+      </button> 
+
+      <button onclick="irRelatorios()">
+        Relatórios
+      </button>
+
+    </nav>
+
+  </header>
+
+  <!-- CONTEÚDO -->
+
+  <main class="container">
+
+    <div class="top-content">
+
+      <div>
+        <h1>Sócios</h1>
+        <p>Gerenciar cadastro de sócios do CTG</p>
+      </div>
+
+      <div class="buttons">
+
+        <button class="btn btn-primary">
+          Cadastro por Etapas
+        </button>
+
+        <button class="btn btn-outline">
+          Cadastro Rápido
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- FILTROS -->
+
+    <section class="box">
+
+      <h2 class="box-title">
+        Filtros
+      </h2>
+
+      <div class="filters">
+
+        <input
+          type="text"
+          id="search"
+          placeholder="Buscar por nome, CPF ou email..."
+          onkeyup="filtrarSocios()"
+        >
+
+        <select>
+          <option>Todas as Categorias</option>
+          <option>Ativo</option>
+          <option>Inativo</option>
+        </select>
+
+        <select>
+          <option>Todos os Status</option>
+          <option>Em dia</option>
+          <option>Atrasado</option>
+        </select>
+
+        <select>
+          <option>Todas as Invernadas</option>
+          <option>Adulta</option>
+          <option>Juvenil</option>
+        </select>
+
+      </div>
+
+    </section>
+
+    <!-- TABELA -->
+
+    <section class="box">
+
+      <div class="table-header">
+        Mostrando <span id="quantidade">3</span> de 3 sócios
+      </div>
+
+      <div class="table-responsive">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Foto</th>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Endereço</th>
+              <th>Categoria</th>
+              <th>Invernada</th>
+              <th>Dependentes</th>
+              <th>Mensalidade</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="tabelaSocios">
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 CTG Raízes da Tradição - Cultivar a Tradição Mantendo as nossas Raízes
+  </footer>
+
+  <script>
+
+    // REDIRECIONAMENTO
+
+    function irDashboard(){
+
+      // TROQUE PELO NOME DA SUA PÁGINA
+      window.location.href = "dashboard.html";
+
+    }
+
+    function irFormularios(){
+
+      // TROQUE PELO NOME DA SUA PÁGINA
+      window.location.href = "formulario.html";
+
+    }
+
+    function irRelatorios(){
+
+      // TROQUE PELO NOME DA SUA PÁGINA
+      window.location.href = "relatorios.html";
+
+    }
+
+    // BASE DE DADOS
+
+    const socios = [
+
+      {
+        nome: "João Silva dos Santos",
+        cpf: "123.456.789-00",
+        endereco: "Rua das Flores, 123 - Porto Alegre/RS",
+        categoria: "Ativo",
+        invernada: "Adulta",
+        dependentes: 2,
+        mensalidade: "Em dia"
+      },
+
+      {
+        nome: "Maria da Silva Oliveira",
+        cpf: "234.567.890-11",
+        endereco: "Av. Brasil, 456 - Canoas/RS",
+        categoria: "Ativo",
+        invernada: "Juvenil",
+        dependentes: 1,
+        mensalidade: "Atrasado"
+      },
+
+      {
+        nome: "Pedro Henrique Costa",
+        cpf: "345.678.901-22",
+        endereco: "Rua Santa Rita, 789 - Porto Alegre/RS",
+        categoria: "Ativo",
+        invernada: "Juvenil",
+        dependentes: "-",
+        mensalidade: "Em dia"
+      }
+
+    ];
+
+    // CARREGAR TABELA
+
+    function carregarTabela(lista){
+
+      const tabela = document.getElementById("tabelaSocios");
+
+      tabela.innerHTML = "";
+
+      lista.forEach((socio) => {
+
+        tabela.innerHTML += `
+
+          <tr>
+
+            <td>
+              <div class="avatar">
+                👤
+              </div>
+            </td>
+
+            <td>${socio.nome}</td>
+
+            <td class="gray">
+              ${socio.cpf}
+            </td>
+
+            <td class="gray">
+              ${socio.endereco}
+            </td>
+
+            <td>
+              <span class="badge green">
+                ${socio.categoria}
+              </span>
+            </td>
+
+            <td>
+              <span class="badge purple">
+                ${socio.invernada}
+              </span>
+            </td>
+
+            <td>
+              <span class="badge blue">
+                ${socio.dependentes}
+              </span>
+            </td>
+
+            <td>
+
+              <span class="badge ${
+                socio.mensalidade === "Em dia"
+                ? "green"
+                : "red"
+              }">
+
+                ${socio.mensalidade}
+
+              </span>
+
+            </td>
+
+          </tr>
+
+        `;
+
+      });
+
+      document.getElementById("quantidade").innerText = lista.length;
+
+    }
+
+    // FILTRO
+
+    function filtrarSocios(){
+
+      const texto = document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+      const filtrados = socios.filter((socio) => {
+
+        return (
+          socio.nome.toLowerCase().includes(texto) ||
+          socio.cpf.includes(texto)
+        );
+
+      });
+
+      carregarTabela(filtrados);
+
+    }
+
+    // INICIAR
+
+    carregarTabela(socios);
+
+  </script>
+
+</body>
+</html>

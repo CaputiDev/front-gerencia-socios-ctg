@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef2f7;
+}
+
+/* TOPO */
+.topbar {
+  background: #1f3c88;
+  color: white;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.Logo{
+border-radius:60pc;
+}
+
+.topbar nav {
+  margin-left: auto;
+}
+
+.topbar a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.topbar a.active {
+  background: #3b5bcc;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+/* CONTAINER */
+.container {
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* FORM */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #4c6ef5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* INFO BOX */
+.info-box {
+  background: #dbeafe;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* TABELA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tag {
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+}
+
+.azul {
+  background: #3b82f6;
+}
+
+.roxo {
+  background: #8b5cf6;
+}
+
+/* DOC CARDS */
+.doc-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.doc-card {
+  flex: 1;
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.doc-card button {
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #4c6ef5;
+  color: white;
+}
+
+.btn-danger {
+  background: #ef4444;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #1f3c88;
+  color: white;
+  margin-top: 30px;
+}

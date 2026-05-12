@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Formulários - CTG Raízes da Tradição</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#eef3f8;
+      color:#1f2937;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      width:100%;
+      background:#1737b7;
+      color:white;
+      padding:14px 30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .logo-area{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#1737b7;
+      font-weight:bold;
+    }
+
+    .logo-title h2{
+      font-size:24px;
+    }
+
+    .logo-title p{
+      font-size:13px;
+      opacity:0.8;
+    }
+
+    .menu{
+      display:flex;
+      gap:14px;
+    }
+
+    .menu button{
+      border:none;
+      background:transparent;
+      color:white;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:14px;
+    }
+
+    .menu button:hover,
+    .menu .active{
+      background:rgba(255,255,255,0.15);
+    }
+
+    /* CONTAINER */
+
+    .container{
+      padding:24px;
+    }
+
+    .page-title{
+      margin-bottom:24px;
+    }
+
+    .page-title h1{
+      color:#1737b7;
+      font-size:42px;
+      margin-bottom:6px;
+    }
+
+    .page-title p{
+      color:#6b7280;
+    }
+
+    /* BOX */
+
+    .box{
+      background:white;
+      border-radius:16px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom:24px;
+      overflow:hidden;
+    }
+
+    .box-header{
+      background:#edf4ff;
+      padding:18px 24px;
+      font-weight:bold;
+      color:#1737b7;
+      border-bottom:1px solid #dbeafe;
+    }
+
+    .box-content{
+      padding:24px;
+    }
+
+    /* FORM */
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .form-group{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    input,
+    select{
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:#f3f4f6;
+      outline:none;
+    }
+
+    .btn{
+      border:none;
+      border-radius:10px;
+      padding:12px 18px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#2563eb;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#1d4ed8;
+    }
+
+    .btn-outline{
+      background:white;
+      border:1px solid #d1d5db;
+    }
+
+    .btn-red{
+      border:1px solid #fecaca;
+      color:#dc2626;
+      background:white;
+    }
+
+    .btn-blue{
+      border:1px solid #bfdbfe;
+      color:#2563eb;
+      background:white;
+    }
+
+    /* INFO */
+
+    .info-box{
+      background:#f8fbff;
+      border:1px solid #bfdcff;
+      border-radius:12px;
+      padding:18px;
+      margin-top:20px;
+    }
+
+    .info-box h3{
+      color:#1737b7;
+      margin-bottom:12px;
+      font-size:16px;
+    }
+
+    .info-box p{
+      color:#2563eb;
+      font-size:14px;
+      margin-bottom:6px;
+    }
+
+    /* TABLE */
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      text-align:left;
+      padding:14px;
+      font-size:14px;
+      border-bottom:1px solid #e5e7eb;
+    }
+
+    td{
+      padding:16px 14px;
+      border-bottom:1px solid #e5e7eb;
+      font-size:14px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .purple{
+      background:#f3e8ff;
+      color:#9333ea;
+    }
+
+    .blue{
+      background:#dbeafe;
+      color:#2563eb;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      font-size:18px;
+    }
+
+    .view{
+      color:#2563eb;
+      cursor:pointer;
+    }
+
+    .download{
+      color:#16a34a;
+      cursor:pointer;
+    }
+
+    .delete{
+      color:#dc2626;
+      cursor:pointer;
+    }
+
+    /* CARDS */
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+
+    .doc-card{
+      border:1px solid #dbeafe;
+      border-radius:14px;
+      padding:18px;
+      background:white;
+    }
+
+    .doc-card h3{
+      margin-bottom:10px;
+      font-size:16px;
+    }
+
+    .card-buttons{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    footer{
+      margin-top:40px;
+      background:#1737b7;
+      color:white;
+      text-align:center;
+      padding:10px;
+      font-size:14px;
+    }
+
+    @media(max-width:768px){
+
+      .navbar{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      .menu{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .page-title h1{
+        font-size:34px;
+      }
+
+      table{
+        min-width:700px;
+      }
+
+      .box{
+        overflow:auto;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="logo-area">
+
+      <div class="logo">
+        CTG
+      </div>
+
+      <div class="logo-title">
+        <h2>CTG Raízes da Tradição</h2>
+        <p>Sistema de Gerenciamento</p>
+      </div>
+
+    </div>
+
+    <nav class="menu">
+
+      <button onclick="irDashboard()">
+        Dashboard
+      </button>
+
+      <button onclick="irSocios()">
+        Sócios
+      </button>
+
+      <button class="active">
+        Formulários
+      </button>
+
+      <button onclick="irRelatorios()">
+        Relatórios
+      </button>
+
+    </nav>
+
+  </header>
+
+  <!-- CONTEÚDO -->
+
+  <main class="container">
+
+    <div class="page-title">
+      <h1>Formulários e Documentos</h1>
+      <p>Gerenciar templates de formulários em Word para automação</p>
+    </div>
+
+    <!-- FORMULÁRIO -->
+
+    <section class="box">
+
+      <div class="box-header">
+        + Adicionar Novo Formulário
+      </div>
+
+      <div class="box-content">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label>
+              Tipo de Formulário *
+            </label>
+
+            <select id="tipo">
+              <option value="">Selecione o tipo</option>
+              <option>Ficha de Sociedade</option>
+              <option>Cartão Tradicionalista</option>
+              <option>Contrato</option>
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>
+              Nome do Formulário *
+            </label>
+
+            <input
+              type="text"
+              id="nome"
+              placeholder="Ex: Ficha de Sociedade 2026"
+            >
+
+          </div>
+
+          <div class="form-group full">
+
+            <label>
+              Arquivo Word (.doc ou .docx) *
+            </label>
+
+            <input type="file" id="arquivo">
+
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-primary"
+          onclick="adicionarFormulario()"
+        >
+          Enviar Formulário
+        </button>
+
+        <!-- INFO -->
+
+        <div class="info-box">
+
+          <h3>
+            Como funciona a automação?
+          </h3>
+
+          <p>Faça upload dos templates de formulários em Word</p>
+          <p>O sistema preencherá automaticamente os campos com dados dos sócios</p>
+          <p>Use campos merge do Word como: {nome}, {cpf}, {endereco}</p>
+          <p>Os documentos serão gerados em PDF ou Word para download</p>
+          <p>Ideal para gerar fichas, contratos e cartões em lote</p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TABELA -->
+
+    <section class="box">
+
+      <div class="box-header">
+        Formulários Cadastrados (<span id="quantidade">2</span>)
+      </div>
+
+      <div class="box-content">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Tamanho</th>
+              <th>Data Upload</th>
+              <th>Ações</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="tabelaFormularios">
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- GERAR DOCUMENTOS -->
+
+    <section class="box">
+
+      <div class="box-header">
+        Gerar Documentos Automaticamente
+      </div>
+
+      <div class="box-content">
+
+        <div class="cards" id="cardsDocumentos">
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 CTG Raízes da Tradição - Cultivar a Tradição Mantendo as nossas Raízes
+  </footer>
+
+  <script>
+
+    // REDIRECIONAMENTOS
+
+    function irDashboard(){
+
+      window.location.href = "dashboard.html";
+
+    }
+
+    function irSocios(){
+
+      window.location.href = "socios.html";
+
+    }
+
+    function irRelatorios(){
+
+      // TROQUE PELO NOME DA SUA PÁGINA
+      window.location.href = "relatorios.html";
+
+    }
+
+    // BASE
+
+    const formularios = [
+
+      {
+        nome: "Ficha de Sociedade - Template.docx",
+        tipo: "Ficha de Sociedade",
+        tamanho: "45 KB",
+        data: "14/03/2026"
+      },
+
+      {
+        nome: "Cartão Tradicionalista - Modelo.docx",
+        tipo: "Cartão Tradicionalista",
+        tamanho: "38 KB",
+        data: "09/03/2026"
+      }
+
+    ];
+
+    // CARREGAR
+
+    function carregarFormularios(){
+
+      const tabela = document.getElementById("tabelaFormularios");
+      const cards = document.getElementById("cardsDocumentos");
+
+      tabela.innerHTML = "";
+      cards.innerHTML = "";
+
+      formularios.forEach((formulario, index) => {
+
+        tabela.innerHTML += `
+
+          <tr>
+
+            <td>${formulario.nome}</td>
+
+            <td>
+              <span class="badge purple">
+                ${formulario.tipo}
+              </span>
+            </td>
+
+            <td>${formulario.tamanho}</td>
+
+            <td>${formulario.data}</td>
+
+            <td>
+
+              <div class="actions">
+
+                <span
+                  class="view"
+                  onclick="visualizarFormulario(${index})"
+                >
+                  👁
+                </span>
+
+                <span
+                  class="download"
+                  onclick="baixarFormulario(${index})"
+                >
+                  ⬇
+                </span>
+
+                <span
+                  class="delete"
+                  onclick="removerFormulario(${index})"
+                >
+                  🗑
+                </span>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+        // CARDS
+
+        cards.innerHTML += `
+
+          <div class="doc-card">
+
+            <h3>${formulario.nome}</h3>
+
+            <span class="badge purple">
+              ${formulario.tipo}
+            </span>
+
+            <div class="card-buttons">
+
+              <button
+                class="btn btn-blue"
+                onclick="gerarWord('${formulario.nome}')"
+              >
+                Gerar Word
+              </button>
+
+              <button
+                class="btn btn-red"
+                onclick="gerarPDF('${formulario.nome}')"
+              >
+                Gerar PDF
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+      document.getElementById("quantidade").innerText =
+        formularios.length;
+
+    }
+
+    // ADICIONAR
+
+    function adicionarFormulario(){
+
+      const tipo =
+        document.getElementById("tipo").value;
+
+      const nome =
+        document.getElementById("nome").value;
+
+      const arquivo =
+        document.getElementById("arquivo").files[0];
+
+      if(!tipo || !nome || !arquivo){
+
+        alert("Preencha todos os campos.");
+
+        return;
+
+      }
+
+      formularios.push({
+
+        nome: arquivo.name,
+        tipo: tipo,
+        tamanho:
+          Math.round(arquivo.size / 1024) + " KB",
+
+        data:
+          new Date().toLocaleDateString()
+
+      });
+
+      carregarFormularios();
+
+      alert("Formulário enviado com sucesso!");
+
+      document.getElementById("tipo").value = "";
+      document.getElementById("nome").value = "";
+      document.getElementById("arquivo").value = "";
+
+    }
+
+    // AÇÕES
+
+    function visualizarFormulario(index){
+
+      alert(
+        "Visualizando: " +
+        formularios[index].nome
+      );
+
+    }
+
+    function baixarFormulario(index){
+
+      alert(
+        "Download iniciado: " +
+        formularios[index].nome
+      );
+
+    }
+
+    function removerFormulario(index){
+
+      const confirmar = confirm(
+        "Deseja remover este formulário?"
+      );
+
+      if(confirmar){
+
+        formularios.splice(index, 1);
+
+        carregarFormularios();
+
+      }
+
+    }
+
+    function gerarWord(nome){
+
+      alert(
+        "Gerando documento Word de: " + nome
+      );
+
+    }
+
+    function gerarPDF(nome){
+
+      alert(
+        "Gerando PDF de: " + nome
+      );
+
+    }
+
+    // INICIAR
+
+    carregarFormularios();
+
+  </script>
+
+</body>
+</html>

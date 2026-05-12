@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sócios</title>
+  <link rel="stylesheet" href="../css/socios.css">
+</head>
+<body>
+
+<header class="topbar">
+  <img src="Logo.png">
+  <div class="title">
+    <h1>CTG Raízes da Tradição</h1>
+    <span>Sistema de Gerenciamento</span>
+  </div>
+
+  <nav>
+    <a href="#">Dashboard</a>
+    <a href="#" class="active">Sócios</a>
+    <a href="#">Formulários</a>
+    <a href="#">Relatórios</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="header-page">
+    <div>
+      <h2>Sócios</h2>
+      <p>Gerenciar cadastro de sócios do CTG</p>
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary">Cadastro por Etapas</button>
+      <button class="btn-outline">Cadastro Rápido</button>
+    </div>
+  </div>
+
+  <!-- FILTROS -->
+  <section class="card">
+    <h3>Filtros</h3>
+
+    <div class="filters">
+      <input type="text" placeholder="Buscar por nome, CPF ou email...">
+
+      <select>
+        <option>Todas as Categorias</option>
+      </select>
+
+      <select>
+        <option>Todos os Status</option>
+      </select>
+
+      <select>
+        <option>Todas as Invernadas</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- TABELA -->
+  <section class="card">
+    <p class="info">Mostrando 3 de 3 sócios</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Endereço</th>
+          <th>Categoria</th>
+          <th>Invernada</th>
+          <th>Dependentes</th>
+          <th>Mensalidade</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><div class="avatar"></div></td>
+          <td>João Silva dos Santos</td>
+          <td>123.456.789-00</td>
+          <td>Rua das Flores, 123 - Porto Alegre/RS</td>
+          <td><span class="tag verde">Ativo</span></td>
+          <td><span class="tag roxo">Adulta</span></td>
+          <td><span class="badge">2</span></td>
+          <td><span class="tag verde">Em dia</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="avatar"></div></td>
+          <td>Maria da Silva Oliveira</td>
+          <td>234.567.890-11</td>
+          <td>Av. Brasil, 456 - Canoas/RS</td>
+          <td><span class="tag verde">Ativo</span></td>
+          <td><span class="tag roxo">Juvenil</span></td>
+          <td><span class="badge">1</span></td>
+          <td><span class="tag vermelho">Atrasado</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="avatar"></div></td>
+          <td>Pedro Henrique Costa</td>
+          <td>345.678.901-22</td>
+          <td>Rua Santa Rita, 789 - Porto Alegre/RS</td>
+          <td><span class="tag verde">Ativo</span></td>
+          <td><span class="tag roxo">Juvenil</span></td>
+          <td>-</td>
+          <td><span class="tag verde">Em dia</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 CTG Raízes da Tradição - Cultivar a Tradição Mantendo as nossas Raízes
+</footer>
+
+</body>
+</html>

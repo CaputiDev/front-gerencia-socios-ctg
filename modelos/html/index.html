@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulários e Documentos</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <img src="Logo.png" class="Logo">
+  <div>
+    <h1>CTG Raízes da Tradição</h1>
+    <small>Sistema de Gerenciamento</small>
+  </div>
+  <nav>
+    <a href="#">Dashboard</a>
+    <a href="#">Sócios</a>
+    <a href="#">Formulários</a>
+    <a href="#">Relatórios</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Formulários e Documentos</h2>
+  <p>Gerenciar templates de formulários em Word para automação</p>
+
+  <section class="card">
+    <h3>+ Adicionar Novo Formulário</h3>
+
+    <div class="form-grid">
+      <div>
+        <label>Tipo de Formulário *</label>
+        <select>
+          <option>Selecione o tipo</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Nome do Formulário *</label>
+        <input type="text" placeholder="Ex: Ficha de Sociedade 2026">
+      </div>
+    </div>
+
+    <div>
+      <label>Arquivo Word (.doc ou .docx) *</label>
+      <input type="file">
+    </div>
+
+    <button class="btn-primary">Enviar Formulário</button>
+  </section>
+
+  <section class="info-box">
+    <h4>Como funciona a automação?</h4>
+    <p>Faça upload dos templates em Word</p>
+    <p>O sistema preencherá automaticamente os campos</p>
+    <p>Use campos como: {nome}, {cpf}, {endereco}</p>
+    <p>Geração em PDF ou Word</p>
+  </section>
+
+  <section class="card">
+    <h3>Formulários Cadastrados</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Tamanho</th>
+          <th>Data Upload</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ficha de Sociedade - Template.docx</td>
+          <td><span class="tag azul">Ficha de Sociedade</span></td>
+          <td>45 KB</td>
+          <td>14/03/2026</td>
+          <td>👁 ⬇ 🗑</td>
+        </tr>
+
+        <tr>
+          <td>Cartão Tradicionalista - Modelo.docx</td>
+          <td><span class="tag roxo">Cartão Tradicionalista</span></td>
+          <td>38 KB</td>
+          <td>09/03/2026</td>
+          <td>👁 ⬇ 🗑</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h3>Gerar Documentos</h3>
+
+    <div class="doc-grid">
+      <div class="doc-card">
+        <p>Ficha de Sociedade</p>
+        <button>Gerar Word</button>
+        <button class="btn-danger">Gerar PDF</button>
+      </div>
+
+      <div class="doc-card">
+        <p>Cartão Tradicionalista</p>
+        <button>Gerar Word</button>
+        <button class="btn-danger">Gerar PDF</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 CTG Raízes da Tradição
+</footer>
+
+</body>
+</html>

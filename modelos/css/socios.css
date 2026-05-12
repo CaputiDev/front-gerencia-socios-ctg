@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef2f7;
+}
+
+/* TOPO */
+.topbar {
+  background: #1f3c88;
+  color: white;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.topbar .logo {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.topbar nav {
+  margin-left: auto;
+}
+
+.topbar a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.topbar a.active {
+  background: #3b5bcc;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* CONTAINER */
+.container {
+  padding: 20px;
+}
+
+/* HEADER PAGE */
+.header-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions button {
+  margin-left: 10px;
+}
+
+/* BOTÕES */
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+/* CARD */
+.card {
+  background: white;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* FILTROS */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.filters input,
+.filters select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* TABELA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* AVATAR */
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: #dbeafe;
+  border-radius: 50%;
+}
+
+/* TAGS */
+.tag {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: white;
+}
+
+.verde {
+  background: #22c55e;
+}
+
+.roxo {
+  background: #8b5cf6;
+}
+
+.vermelho {
+  background: #ef4444;
+}
+
+/* BADGE */
+.badge {
+  background: #bfdbfe;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 40px;
+  background: #1f3c88;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
