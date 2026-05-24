@@ -390,7 +390,11 @@ export default function Pagamentos() {
       {modalSocio && (
         <ModalPagamento
           nomeSocio={modalSocio.nome}
+          socioId={modalSocio.id}
+          dataEntrada={modalSocio.data_entrada}
           mesPadrao={mesSelecionado}
+          mensalidades={mensalidades}
+          pagamentos={pagamentos}
           onFechar={() => setModalSocio(null)}
           onSalvar={handleSalvarPagamento}
         />

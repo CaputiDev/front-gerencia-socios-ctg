@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect, useMemo } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { ChevronRight, Users } from 'lucide-react'
 import Layout from '../components/Layout'
 import Badge from '../components/Badge'
@@ -20,12 +20,14 @@ function iniciais(nome) {
 
 export default function Socios() {
   const navigate = useNavigate()
+  const location = useLocation()
   const toast = useToast()
   const [dadosIniciais, setDadosIniciais] = useState([])
   const [loading, setLoading] = useState(true)
+  const [ordenacao, setOrdenacao] = useState('Nome (A-Z)')
   const [busca, setBusca] = useState('')
   const [categoria, setCategoria] = useState('Todas as Categorias')
-  const [status, setStatus] = useState('Todos os Status')
+  const [status, setStatus] = useState(() => location.state?.filtroStatus ?? 'Todos os Status')
   const [invernada, setInvernada] = useState('Todas as Invernadas')
 
   useEffect(() => {
@@ -47,13 +49,40 @@ export default function Socios() {
       })
   }, [toast])
 
-  const filtrados = dadosIniciais.filter(s => {
-    const matchBusca = (s.nome || '').toLowerCase().includes(busca.toLowerCase()) || (s.cpf || '').includes(busca)
-    const matchCategoria = categoria === 'Todas as Categorias' || s.status === categoria
-    const matchStatus = status === 'Todos os Status' || s.mensalidade === status
-    const matchInvernada = invernada === 'Todas as Invernadas' || s.invernada === invernada
-    return matchBusca && matchCategoria && matchStatus && matchInvernada
-  })
+  const filtrados = useMemo(() => {
+    return dadosIniciais.filter(s => {
+      const matchBusca = (s.nome || '').toLowerCase().includes(busca.toLowerCase()) || (s.cpf || '').includes(busca)
+      const matchCategoria = categoria === 'Todas as Categorias' || s.status === categoria
+      const matchStatus = status === 'Todos os Status' || s.mensalidade === status
+      const matchInvernada = invernada === 'Todas as Invernadas' || s.invernada === invernada
+      return matchBusca && matchCategoria && matchStatus && matchInvernada
+    })
+  }, [dadosIniciais, busca, categoria, status, invernada])
+
+  const ordenados = useMemo(() => {
+    return [...filtrados].sort((a, b) => {
+      if (ordenacao === 'Nome (A-Z)') {
+        return (a.nome || '').localeCompare(b.nome || '')
+      }
+      if (ordenacao === 'Nome (Z-A)') {
+        return (b.nome || '').localeCompare(a.nome || '')
+      }
+      if (ordenacao === 'Mais Recentes') {
+        const da = a.data_entrada ? new Date(a.data_entrada) : new Date(0)
+        const db = b.data_entrada ? new Date(b.data_entrada) : new Date(0)
+        return db - da
+      }
+      if (ordenacao === 'Mais Antigos') {
+        const da = a.data_entrada ? new Date(a.data_entrada) : new Date(0)
+        const db = b.data_entrada ? new Date(b.data_entrada) : new Date(0)
+        return da - db
+      }
+      if (ordenacao === 'Mais Dependentes') {
+        return (b.dependentes || 0) - (a.dependentes || 0)
+      }
+      return 0
+    })
+  }, [filtrados, ordenacao])
 
   return (
     <Layout>
@@ -77,7 +106,7 @@ export default function Socios() {
 
           <section className="bg-white rounded-2xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.08)] mb-6">
             <h2 className="text-[#1a3560] text-xl font-bold mb-5">Filtros</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
               <input
                 type="text"
                 placeholder="Buscar por nome ou CPF..."
@@ -99,6 +128,13 @@ export default function Socios() {
               </select>
               <select value={invernada} onChange={e => setInvernada(e.target.value)} className={inputClass}>
                 {INVERNADAS_FILTRO.map(inv => <option key={inv}>{inv}</option>)}
+              </select>
+              <select value={ordenacao} onChange={e => setOrdenacao(e.target.value)} className={inputClass}>
+                <option value="Nome (A-Z)">Nome (A-Z)</option>
+                <option value="Nome (Z-A)">Nome (Z-A)</option>
+                <option value="Mais Recentes">Mais Recentes</option>
+                <option value="Mais Antigos">Mais Antigos</option>
+                <option value="Mais Dependentes">Mais Dependentes</option>
               </select>
             </div>
           </section>
@@ -132,7 +168,7 @@ export default function Socios() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filtrados.map(s => (
+                    {ordenados.map(s => (
                       <tr
                         key={s.id}
                         className="cursor-pointer hover:bg-blue-50 transition-colors"

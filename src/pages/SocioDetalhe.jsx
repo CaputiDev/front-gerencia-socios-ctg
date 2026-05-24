@@ -487,6 +487,10 @@ export default function SocioDetalhe() {
       {modalPagamento && (
         <ModalPagamento
           nomeSocio={form.nome}
+          socioId={form.id}
+          dataEntrada={form.data_entrada}
+          mensalidades={mensalidades}
+          pagamentos={pagamentos}
           onFechar={() => setModalPagamento(false)}
           onSalvar={handleSalvarPagamento}
         />

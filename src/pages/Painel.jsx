@@ -259,7 +259,7 @@ export default function Painel() {
               ))
             )}
             {listInadimplentes.length > 0 && (
-              <Link to="/socios" className="block text-center mt-3 text-blue-600 font-bold hover:underline">
+              <Link to="/socios" state={{ filtroStatus: 'Atrasado' }} className="block text-center mt-3 text-blue-600 font-bold hover:underline">
                 Ver todos →
               </Link>
             )}

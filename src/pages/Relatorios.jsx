@@ -64,23 +64,69 @@ export default function Relatorios() {
 
       // Mapeamento dinâmico do status de adimplência do sócio
       const mappedSocios = sociosData.map(s => {
-        const socioMensalidades = mensalidadesData.filter(m => m.socio_id === s.id)
+        const socioMensalidades = mensalidadesData.filter(m => m.socio_id === s.id && !m.dependente_id)
 
         let statusPagamento = 'Em dia'
 
         if (tipoFiltroTemporal === 'mes' && filtroMes !== 'Todos') {
           // Se houver mês selecionado, checa se a mensalidade específica daquele mês está pendente/atrasada
           const targetM = socioMensalidades.find(
-            m => m.mes === filtroMesNum && m.ano === filtroAnoNum && !m.dependente_id
+            m => m.mes === filtroMesNum && m.ano === filtroAnoNum
           )
-          if (targetM && (targetM.status === 'Atrasado' || targetM.status === 'Pendente')) {
-            statusPagamento = 'Atrasado'
-          } else if (!targetM) {
-            statusPagamento = 'Pendente' // Não criada ainda
+          
+          if (targetM) {
+            if (targetM.status === 'Atrasado') {
+              statusPagamento = 'Atrasado'
+            } else {
+              // 'Pago' ou 'Pendente' são considerados 'Em dia' no relatório
+              statusPagamento = 'Em dia'
+            }
+          } else {
+            // Se não criada ainda no banco:
+            // Checar se é um mês no passado (anterior ao corrente) e se o sócio já estava admitido
+            const hoje = new Date()
+            const atualAno = hoje.getFullYear()
+            const atualMes = hoje.getMonth() + 1
+            const isPast = filtroAnoNum < atualAno || (filtroAnoNum === atualAno && filtroMesNum < atualMes)
+
+            let entradaAno = 0
+            let entradaMes = 0
+            if (s.data_entrada) {
+              const partes = s.data_entrada.split('-')
+              entradaAno = parseInt(partes[0], 10)
+              entradaMes = parseInt(partes[1], 10)
+            }
+
+            const jaEstavaCadastrado = entradaAno > 0 && (filtroAnoNum > entradaAno || (filtroAnoNum === entradaAno && filtroMesNum >= entradaMes))
+
+            if (isPast && jaEstavaCadastrado) {
+              statusPagamento = 'Atrasado'
+            } else {
+              statusPagamento = 'Em dia' // Pendente vira 'Em dia' no relatório
+            }
           }
         } else {
           // Caso contrário, checa se possui qualquer mensalidade em atraso
-          const hasAtrasado = socioMensalidades.some(m => m.status === 'Atrasado')
+          // Considera apenas 'Atrasado' (Pendente/Pago viram 'Em dia')
+          const hasAtrasado = socioMensalidades.some(m => {
+            const hoje = new Date()
+            const atualAno = hoje.getFullYear()
+            const atualMes = hoje.getMonth() + 1
+            const isPast = m.ano < atualAno || (m.ano === atualAno && m.mes < atualMes)
+
+            let entradaAno = 0
+            let entradaMes = 0
+            if (s.data_entrada) {
+              const partes = s.data_entrada.split('-')
+              entradaAno = parseInt(partes[0], 10)
+              entradaMes = parseInt(partes[1], 10)
+            }
+
+            const jaEstavaCadastrado = entradaAno > 0 && (m.ano > entradaAno || (m.ano === entradaAno && m.mes >= entradaMes))
+
+            return isPast && jaEstavaCadastrado && m.status === 'Atrasado'
+          })
+
           statusPagamento = hasAtrasado ? 'Atrasado' : 'Em dia'
         }
 
