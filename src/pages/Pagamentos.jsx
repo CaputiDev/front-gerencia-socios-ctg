@@ -5,6 +5,7 @@ import Badge from '../components/Badge'
 import EmptyState from '../components/EmptyState'
 import ModalPagamento from '../components/ModalPagamento'
 import { getSocios } from '../services/sociosService'
+import { api } from '../services/api'
 import { useToast } from '../contexts/ToastContext'
 
 const MESES_NOMES = [
@@ -82,7 +83,8 @@ export default function Pagamentos() {
     return matchBusca && matchStatus
   })
 
-  function handleSalvarPagamento(pagamento) {
+  async function handleSalvarPagamento(pagamento) {
+    await api.registrarPagamento(modalSocio.id, pagamento)
     setSocios(prev => prev.map(s =>
       s.id !== modalSocio.id ? s : {
         ...s,

@@ -37,16 +37,24 @@ export default function ModalPagamento({ nomeSocio, mesPadrao, onFechar, onSalva
   const [valor, setValor] = useState('R$ 80,00')
   const [data, setData] = useState(hojeISO())
   const [confirmado, setConfirmado] = useState(false)
+  const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState('')
 
-  function confirmar() {
+  async function confirmar() {
     if (!mes || !valor.trim() || !data) {
       setErro('Preencha todos os campos antes de confirmar.')
       return
     }
     setErro('')
-    onSalvar({ mes, valor: valor.trim(), status: 'Pago', data: isoParaBR(data) })
-    setConfirmado(true)
+    setSalvando(true)
+    try {
+      await onSalvar({ mes, valor: valor.trim(), status: 'Pago', data: isoParaBR(data) })
+      setConfirmado(true)
+    } catch (err) {
+      setErro(err.message || 'Erro ao registrar pagamento.')
+    } finally {
+      setSalvando(false)
+    }
   }
 
   if (confirmado) {
@@ -168,9 +176,10 @@ export default function ModalPagamento({ nomeSocio, mesPadrao, onFechar, onSalva
             </button>
             <button
               onClick={confirmar}
-              className="bg-[#1a3560] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-blue-800 transition-colors shadow-[0_4px_12px_rgba(26,53,96,0.35)] cursor-pointer"
+              disabled={salvando}
+              className="bg-[#1a3560] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-blue-800 transition-colors shadow-[0_4px_12px_rgba(26,53,96,0.35)] cursor-pointer disabled:opacity-60"
             >
-              Confirmar Pagamento
+              {salvando ? 'Salvando...' : 'Confirmar Pagamento'}
             </button>
           </div>
         </div>
